@@ -1,0 +1,65 @@
+{
+  "name": "ihor-drevetskyi/component",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "homepage": "https://github.com/ihor-drevetskyi/component",
+  "description": "Resource component [Symfony]",
+  "keywords": [
+    "bundle",
+    "storage",
+    "symfony",
+    "resource",
+    "doctrine2"
+  ],
+  "authors": [
+    {
+      "name": "Ihor Drevetskyi",
+      "email": "ihor.drevetskyi@gmail.com",
+      "homepage": "https://www.linkedin.com/in/ihor-drevetskyi/",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.4|^8.0",
+    "ext-exif": "*",
+    "ext-json": "*",
+    "ext-ctype": "*",
+    "ext-iconv": "*",
+    "ext-simplexml": "*",
+    "cocur/slugify": "^4.0",
+    "twig/intl-extra": "^3.3",
+    "symfony/flex": "^1.13.4",
+    "symfony/orm-pack": "^2.1",
+    "symfony/twig-pack": "^1.0",
+    "symfony/yaml": "4.4.*|5.3.*",
+    "symfony/intl": "4.4.*|5.3.*",
+    "symfony/asset": "4.4.*|5.3.*",
+    "vich/uploader-bundle": "^1.18",
+    "symfony/dotenv": "4.4.*|5.3.*",
+    "symfony/console": "4.4.*|5.3.*",
+    "symfony/runtime": "4.4.*|5.3.*",
+    "symfony/serializer-pack": "^1.0",
+    "jms/i18n-routing-bundle": "^3.1",
+    "symfony/validator": "4.4.*|5.3.*",
+    "babdev/pagerfanta-bundle": "^v3.3",
+    "gedmo/doctrine-extensions": "^3.1",
+    "symfony/translation": "4.4.*|5.3.*",
+    "knplabs/doctrine-behaviors": "^2.2",
+    "suncat/mobile-detect-bundle": "@dev",
+    "knplabs/knp-paginator-bundle": "^5.5",
+    "beberlei/doctrineextensions": "^v1.3",
+    "sensio/framework-extra-bundle": "^6.1",
+    "symfony/security-bundle": "4.4.*|5.3.*",
+    "stof/doctrine-extensions-bundle": "^1.6",
+    "symfony/framework-bundle": "4.4.*|5.3.*"
+  },
+  "require-dev": {
+    "symfony/test-pack": "*",
+    "symfony/debug-pack": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ComponentBundle\\": "src"
+    }
+  }
+}

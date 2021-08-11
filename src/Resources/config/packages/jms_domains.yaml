@@ -1,0 +1,9 @@
+jms_i18n_routing:
+  default_locale: "%locale%"
+  locales: "%locales%"
+  strategy: custom
+  hosts:
+    en: '%env(APP_DOMAIN_EN)%'
+    ru: '%env(APP_DOMAIN_RU)%'
+    uk: '%env(APP_DOMAIN_UK)%'
+  redirect_to_host: true

@@ -1,0 +1,61 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+  memcached.config: { distribution: 'consistent', compression: true }
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: false       # Allows optimizing the container by removing unused services; this also means
+    # fetching services directly from the container via $container->get() won't work.
+    # The best practice is to be explicit about your dependencies anyway.
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  ComponentBundle\:
+    resource: '../../*'
+    exclude: '../../{Entity,Migrations,Tests}'
+
+  # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
+  memcached:
+    class: Memcached
+    factory: Symfony\Component\Cache\Adapter\MemcachedAdapter::createConnection
+    arguments: [ '%env(MEMCACHED_SERVERS)%', '%memcached.config%' ]
+
+  SunCat\MobileDetectBundle\DeviceDetector\MobileDetector:
+    alias: 'mobile_detect.mobile_detector'
+    public: true
+
+  ComponentBundle\Factory\Factory:
+    lazy: true
+
+  ComponentBundle\Helper\DeviceView:
+    alias: 'mobile_detect.device_view'
+    public: true
+
+  ComponentBundle\Helper\RequestHelper:
+    lazy: true
+
+  ComponentBundle\Helper\PaginatorHelper:
+    lazy: true
+
+  ComponentBundle\Service\MobileDetector:
+    arguments: ['@service_container', '@ComponentBundle\Helper\DeviceView' ]
+    lazy: true
+
+  ComponentBundle\Service\Cache\CacheService:
+    lazy: true
+
+  ComponentBundle\EventListener\LocaleListener:
+    arguments: [ '@service_container' ]
+    tags:
+      - { name: kernel.event_listener }
+
+  ComponentBundle\Generator\RandomnessGenerator:
+    lazy: true
