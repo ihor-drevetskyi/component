@@ -2,6 +2,7 @@
 
 namespace ComponentBundle\EventListener;
 
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -63,8 +64,14 @@ final class LocaleListener implements EventSubscriberInterface
      */
     public function onKernelRequest(RequestEvent $event)
     {
-        if (!$event->isMainRequest()) {
-            return;
+        if (strpos(Kernel::VERSION, '4.4') === false) {
+            if (!$event->isMainRequest()) {
+                return;
+            }
+        } else {
+            if (!$event->isMasterRequest()) {
+                return;
+            }
         }
 
         $request = $event->getRequest();

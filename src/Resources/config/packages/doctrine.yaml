@@ -52,9 +52,3 @@ doctrine:
             dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Loggable/Entity"
             alias: GedmoLoggable
             is_bundle: false
-
-when@test:
-  doctrine:
-    dbal:
-      # "TEST_TOKEN" is typically set by ParaTest
-      dbname_suffix: '_test%env(default::TEST_TOKEN)%'

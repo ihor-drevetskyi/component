@@ -1,0 +1,7 @@
+imports:
+  - { resource: '@ComponentBundle/Resources/config/packages/validator.yaml' }
+
+when@test:
+  framework:
+    validation:
+      not_compromised_password: false

@@ -26,38 +26,3 @@ framework:
     enable_annotations: true
   cache:
     prefix_seed: '%env(PROJECT_SYSTEM_NAME)%'
-  http_cache: true
-
-when@test:
-  framework:
-    test: true
-    session:
-      storage_factory_id: 'session.storage.factory.mock_file'
-
-when@prod:
-  framework:
-    cache:
-      pools:
-        doctrine.result_cache_pool:
-          adapter: 'cache.adapter.memcached'
-        #        adapter: cache.app
-        doctrine.system_cache_pool:
-          adapter: 'cache.adapter.memcached'
-        #        adapter: cache.system
-        doctrine_cache_adapter:
-          adapter: 'cache.adapter.memcached'
-  #        adapter: 'cache.adapter.array'
-
-when@dev:
-  framework:
-    cache:
-      pools:
-        doctrine.result_cache_pool:
-#          adapter: 'cache.adapter.memcached'
-          adapter: 'cache.app'
-        doctrine.system_cache_pool:
-#          adapter: 'cache.adapter.memcached'
-          adapter: 'cache.system'
-        doctrine_cache_adapter:
-#          adapter: 'cache.adapter.memcached'
-          adapter: 'cache.adapter.array'

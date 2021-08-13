@@ -1,0 +1,7 @@
+imports:
+  - { resource: '@ComponentBundle/Resources/config/packages/routing.yaml' }
+
+when@prod:
+  framework:
+    router:
+      strict_requirements: null

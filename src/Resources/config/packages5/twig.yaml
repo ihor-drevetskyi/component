@@ -1,0 +1,6 @@
+imports:
+  - { resource: '@ComponentBundle/Resources/config/packages/twig.yaml' }
+
+when@test:
+  twig:
+    strict_variables: true

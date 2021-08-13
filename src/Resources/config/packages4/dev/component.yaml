@@ -1,0 +1,2 @@
+component:
+  use_memcached: false

@@ -2,6 +2,7 @@
 
 namespace ComponentBundle\EventListener;
 
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -28,8 +29,14 @@ final class ResponseListener implements EventSubscriberInterface
      */
     public function onKernelResponse(ResponseEvent $event)
     {
-        if (!$event->isMainRequest()) {
-            return;
+        if (strpos(Kernel::VERSION, '4.4') === false) {
+            if (!$event->isMainRequest()) {
+                return;
+            }
+        } else {
+            if (!$event->isMasterRequest()) {
+                return;
+            }
         }
 
         $response = $event->getResponse();

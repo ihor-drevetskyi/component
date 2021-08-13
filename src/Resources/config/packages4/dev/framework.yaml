@@ -1,0 +1,12 @@
+framework:
+  cache:
+    pools:
+      doctrine.result_cache_pool:
+#          adapter: 'cache.adapter.memcached'
+        adapter: 'cache.app'
+      doctrine.system_cache_pool:
+#          adapter: 'cache.adapter.memcached'
+        adapter: 'cache.system'
+      doctrine_cache_adapter:
+#          adapter: 'cache.adapter.memcached'
+        adapter: 'cache.adapter.array'

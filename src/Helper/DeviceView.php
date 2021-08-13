@@ -2,6 +2,7 @@
 
 namespace ComponentBundle\Helper;
 
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpFoundation\RequestStack;
 use SunCat\MobileDetectBundle\Helper\DeviceView as BaseDeviceView;
 
@@ -20,10 +21,18 @@ class DeviceView extends BaseDeviceView
     {
         parent::__construct($request_stack);
 
-        if (!$request_stack || !$this->request = $request_stack->getMainRequest()) {
-            $this->viewType = self::VIEW_NOT_MOBILE;
+        if (strpos(Kernel::VERSION, '4.4') === false) {
+            if (!$request_stack || !$this->request = $request_stack->getMainRequest()) {
+                $this->viewType = self::VIEW_NOT_MOBILE;
 
-            return;
+                return;
+            }
+        } else {
+            if (!$request_stack || !$this->request = $request_stack->getMasterRequest()) {
+                $this->viewType = self::VIEW_NOT_MOBILE;
+
+                return;
+            }
         }
 
         if (
