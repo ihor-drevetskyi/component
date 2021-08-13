@@ -1,7 +1,0 @@
-when@dev:
-  component:
-    use_memcached: false
-
-when@prod:
-  component:
-    use_memcached: true

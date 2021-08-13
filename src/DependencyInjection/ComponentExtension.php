@@ -27,7 +27,18 @@ final class ComponentExtension extends Extension implements PrependExtensionInte
         $bundles = $container->getParameter('kernel.bundles');
 
         $loader->load('cache.yaml');
+        $loader->load('routing.yaml');
+        $loader->load('framework.yaml');
+        $loader->load('validator.yaml');
         $loader->load('translation.yaml');
+
+        if (isset($bundles['TwigBundle'])) {
+            $loader->load('twig.yaml');
+        }
+
+        if (isset($bundles['DoctrineBundle'])) {
+            $loader->load('doctrine.yaml');
+        }
 
         if (isset($bundles['MobileDetectBundle'])) {
             $loader->load('mobile_detect.yaml');
@@ -54,23 +65,10 @@ final class ComponentExtension extends Extension implements PrependExtensionInte
         }
 
         if (strpos(Kernel::VERSION, '4.4') === false) {
-            $loader->load('component.yaml');
             $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config/packages5'));
         }
 
-        if (isset($bundles['DoctrineBundle'])) {
-            $loader->load('doctrine.yaml');
-        }
-
         $loader->load('framework.yaml');
-        $loader->load('routing.yaml');
-
-
-        if (isset($bundles['TwigBundle'])) {
-            $loader->load('twig.yaml');
-        }
-
-        $loader->load('validator.yaml');
     }
 
     /**
